@@ -1,3 +1,5 @@
+Readme is now behind the repo and need to be updated
+
 ## open-cli
 
 open-cli, Google GenAI SDK (google-genai) kullanarak sorular gönderip yanıt alabileceğiniz bir Python Qt (PySide6) masaüstü uygulamasıdır.

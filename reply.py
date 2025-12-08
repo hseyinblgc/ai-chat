@@ -22,6 +22,28 @@ class Window(QtWidgets.QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.ui.pushButton.clicked.connect(self.addtolist)
+
+    def addtolist(self):
+        reply = self.ui.lineEdit.text()
+        self.ui.lineEdit.clear()
+        self.ui.listWidget.addItem("Sen: \n " + reply + "\n")
+        self.ui.listWidget.scrollToBottom() 
+        self.ui.lineEdit.setPlaceholderText("Thinking")
+        QtWidgets.QApplication.processEvents()
+        
+        try:
+            result = callapi(reply)
+        except Exception as e:
+            result = f"Error {e}" 
+        self.ui.listWidget.addItem("Gemini: \n " + result + "\n")
+        self.ui.listWidget.scrollToBottom()
+        self.ui.lineEdit.setPlaceholderText("Type Here")
+
+
+
+               
 # ----------------------
 # RUN
 # ----------------------
