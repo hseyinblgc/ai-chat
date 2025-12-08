@@ -29,14 +29,14 @@ class Window(QtWidgets.QMainWindow):
     def addtolist(self):
         reply = self.ui.lineEdit.text()
         self.ui.lineEdit.clear()
-        self.ui.listWidget.addItem("Sen: \n " + reply + "\n")
+        self.ui.listWidget.addItem(f"Sen: \n     {reply} \n")
         self.ui.listWidget.scrollToBottom() 
         self.ui.lineEdit.setPlaceholderText("Thinking")
         QtWidgets.QApplication.processEvents()
         
         try:
             result = callapi(reply)
-            self.ui.listWidget.addItem("Gemini: \n " + result + "\n")
+            self.ui.listWidget.addItem(f"Gemini: \n     {result}\n")
             self.ui.listWidget.scrollToBottom()
             self.ui.lineEdit.setPlaceholderText("Type Here")
         except Exception as e:
