@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from google import genai
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtWidgets import QMessageBox
 from mainwindow import Ui_MainWindow
 import sys
 
@@ -35,11 +36,21 @@ class Window(QtWidgets.QMainWindow):
         
         try:
             result = callapi(reply)
+            self.ui.listWidget.addItem("Gemini: \n " + result + "\n")
+            self.ui.listWidget.scrollToBottom()
+            self.ui.lineEdit.setPlaceholderText("Type Here")
         except Exception as e:
             result = f"Error {e}" 
-        self.ui.listWidget.addItem("Gemini: \n " + result + "\n")
-        self.ui.listWidget.scrollToBottom()
-        self.ui.lineEdit.setPlaceholderText("Type Here")
+            msg = QMessageBox()
+            msg.setWindowTitle("Error")
+            msg.setText("There is something wrong")
+            msg.setDetailedText(result)
+            msg.setIcon(QMessageBox.Icon.Warning)
+            self.ui.lineEdit.setPlaceholderText("Type Here")
+            x = msg.exec()
+
+        
+
 
 
 
