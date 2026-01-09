@@ -2,8 +2,9 @@ import os
 
 from dotenv import load_dotenv
 from google import genai
-from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QMessageBox
+from PySide6.QtCore import Qt
+from PySide6 import QtWidgets
+from PySide6.QtWidgets import QMessageBox, QListWidgetItem
 from mainwindow import Ui_MainWindow
 import sys
 
@@ -29,14 +30,18 @@ class Window(QtWidgets.QMainWindow):
     def addtolist(self):
         reply = self.ui.lineEdit.text()
         self.ui.lineEdit.clear()
-        self.ui.listWidget.addItem(f"Sen: \n     {reply} \n")
+        item = QListWidgetItem(reply)
+        item.setTextAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.ui.listWidget.addItem(item)
         self.ui.listWidget.scrollToBottom() 
         self.ui.lineEdit.setPlaceholderText("Thinking")
         QtWidgets.QApplication.processEvents()
         
         try:
             result = callapi(reply)
-            self.ui.listWidget.addItem(f"Gemini: \n     {result}\n")
+            item = QListWidgetItem(result)
+            item.setTextAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+            self.ui.listWidget.addItem(item)
             self.ui.listWidget.scrollToBottom()
             self.ui.lineEdit.setPlaceholderText("Type Here")
         except Exception as e:
