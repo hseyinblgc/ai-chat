@@ -1,5 +1,5 @@
 protobuf==6.33.2
-PyQt6==6.10.1
+PySide6
 pyqt6_sip==13.10.3
 python-dotenv==1.2.1
 google-genai~=1.53.0

@@ -67,3 +67,5 @@ python main.py
 
 - **Uygulama başlamıyorsa:** `PySide6`'nın doğru kurulduğundan emin olun.
 - **API hatası alıyorsanız:** API anahtarınızın geçerli ve internet bağlantınızın aktif olduğunu kontrol edin.
+
+![Preview](screenshot/image.png)
